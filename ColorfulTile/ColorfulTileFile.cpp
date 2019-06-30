@@ -12,6 +12,14 @@ ColorfulTileFile::ColorfulTileFile(string& filePath, string& color, bool Foregro
 	}
 }
 
+ColorfulTileFile::ColorfulTileFile(ColorfulTileFile& fileClass)
+{
+	_color = fileClass._color;
+	_Foreground = fileClass._Foreground;
+	logo = fileClass.logo;
+	file = fileClass.file;
+}
+
 void ColorfulTileFile::generateXml()
 {
 	pushLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
@@ -49,8 +57,7 @@ void ColorfulTileFile::getAboutXml(string& filePath)
 {
 	string xmlFileName = filePath, path;
 	string temp;
-	do
-	{
+	do {
 		temp = filePath[filePath.size() - 1];
 		filePath.pop_back();
 	} while (temp != "\\");
@@ -86,29 +93,36 @@ string ColorfulTileFile::getXmlContent()
 	return content;
 }
 
-void ColorfulTileFile::setForeground(bool foreground)
+bool ColorfulTileFile::CheckFolderExist(const string& strPath)
 {
+	WIN32_FIND_DATA  wfd;
+	bool rValue = false;
+	HANDLE hFind = FindFirstFile(strPath.c_str(), &wfd);
+	if ((hFind != INVALID_HANDLE_VALUE) && (wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+		rValue = true;
+
+	FindClose(hFind);
+	return rValue;
+}
+
+void ColorfulTileFile::setForeground(bool foreground) {
 	_Foreground = foreground;
 }
 
-void ColorfulTileFile::endXml()
-{
+void ColorfulTileFile::endXml() {
 	pushLine("></VisualElements>");
 	pushLine("</Application>");
 	pushLine("");
 }
 
-void ColorfulTileFile::pushLine(const string& content)
-{
+void ColorfulTileFile::pushLine(const string& content) {
 	file.xmlFileContent.push_back(content);
 }
 
-void ColorfulTileFile::set150x150logo(string& logo150x150)
-{
+void ColorfulTileFile::set150x150logo(string& logo150x150) {
 	logo.Square150x150Logo = logo150x150;
 }
 
-void ColorfulTileFile::set70x70logo(string& logo70x70)
-{
+void ColorfulTileFile::set70x70logo(string& logo70x70) {
 	logo.Square70x70Logo = logo70x70;
 }
