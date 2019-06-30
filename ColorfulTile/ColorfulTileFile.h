@@ -35,10 +35,15 @@ private:
 
 	void getAboutXml(string& filePath);	// 处理文件路径、名称和 xml 文件
 
-	friend class ShowTile;
+	// 目录是否存在
+	bool CheckFolderExist(const string& strPath);
+
+	friend class ShowOnStartMenu;
 public:
 	ColorfulTileFile(string& filePath,		// 文件路径
 		string& color, bool Foreground);
+
+	ColorfulTileFile(ColorfulTileFile& fileClass);
 
 	void generateXml();							// 编辑 xml 文件内容
 
