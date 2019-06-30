@@ -1,35 +1,31 @@
-﻿// ColorfulTile.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
-// 未完待续...
-
-#include "ColorfulTileFile.h"
+﻿#include "ColorfulTileFile.h"
 
 using namespace std;
 
-void Main();
+void NoPar();
 bool compare(string&);
-void endXml(ColorfulTileFile tileFile);
+void endXml(ColorfulTileFile& tileFile);
 
 int main(int argc, char* args[])
 {
 	SetConsoleTitle("ColorfulTile - Star sea");
 	HWND hwnd = GetForegroundWindow();
 
-	if (argc < 2) {
-		Main();
-		return 0;
+	if (argc < 2)
+		NoPar();
+	else {
+		string filePath = args[1], color = args[2];
+		bool foreground = true;
+		if (strstr(args[3], "light") == NULL)
+			foreground = false;
+
+		ColorfulTileFile tileFile(filePath, color, true);
+		endXml(tileFile);
 	}
-
-	string filePath = args[1], color = args[2];
-	bool foreground = true;
-	if (strstr(args[3], "light") == NULL)
-		foreground = false;
-
-	ColorfulTileFile tileFile(filePath, color, true);
-	endXml(tileFile);
 	return 0;
 }
 
-void Main()
+void NoPar()
 {
 	string path;
 	int temp = 0;
@@ -64,7 +60,7 @@ void Main()
 	if ((str == "Y") || (str == "y"))
 	{
 		cout << "Square150x150Logo = ";
-		getchar();
+		cin.get();
 		getline(cin, logo);
 		tileFile.set150x150logo(logo);
 
@@ -77,7 +73,7 @@ void Main()
 	endXml(tileFile);
 }
 
-void endXml(ColorfulTileFile tileFile)
+void endXml(ColorfulTileFile& tileFile)
 {
 	cout << "正在生成..." << endl;
 	tileFile.generateXml();
@@ -96,4 +92,6 @@ bool compare(string& str)
 	if (strstr(ch, ".Exe") != NULL || strstr(ch, ".eXe") != NULL || strstr(ch, ".exE") != NULL ||
 		strstr(ch, ".EXe") != NULL || strstr(ch, ".eXE") != NULL || strstr(ch, ".EXE") != NULL)
 		return true;
+
+	return false;
 }
