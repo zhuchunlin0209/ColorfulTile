@@ -1,8 +1,8 @@
 # ColorfulTile
 修改 Windows10 磁贴颜色
 
-## 修改磁贴的API
-[C# API](https://docs.microsoft.com/zh-cn/windows/uwp/design/shell/tiles-and-notifications/creating-tiles "修改磁贴的API")
+## 固定磁贴的API
+[C# API](https://docs.microsoft.com/zh-cn/windows/uwp/design/shell/tiles-and-notifications/creating-tiles "固定磁贴的API")
 
 但是我不会 C# , 有兴趣可以看一下
 
