@@ -1,6 +1,8 @@
 # ColorfulTile
 修改 Windows10 磁贴颜色
 
+此程序可以实现命令行
+
 ## 修改磁贴的API
 [C# API](https://docs.microsoft.com/zh-cn/windows/uwp/design/shell/tiles-and-notifications/creating-tiles "修改磁贴的API")
 
@@ -38,15 +40,15 @@
 > ```
 
 > ##### Pin your primary tile
-> If your primary tile currently isn&apos;t pinned, and your tile is supported by Start, you might want to show a tip to users that they can pin your primary tile.
->
->> 备注
->>
->> You must call this API from a UI thread while your app is in the foreground, and you should only call this API after the user has intentionally requested the primary tile be pinned (for example, after the user clicked yes to your tip about pinning the tile).
->
+> If your primary tile currently isn&apos;t pinned, and your tile is supported by Start, you might want to show a tip to users that they can pin your primary tile. 
+> 
+> ```
+> Remarks
+> 
+> You must call this API from a UI thread while your app is in the foreground, and you should only call this API after the user has intentionally requested the primary tile be pinned (for example, after the user clicked yes to your tip about pinning the tile).
 > If the user clicks your button to pin the primary tile, you would then call the RequestAddAppListEntryAsync method to request that your tile be pinned to Start. This will display a dialog asking the user to confirm that they want your tile pinned to Start.
->
-> This will return a boolean representing whether your tile is now pinned to Start. If your tile was already pinned, this will immediately return true without showing the dialog to the user. If the user clicks no on the dialog, or pinning your tile to Start isn&apos;t supported, this will return false. Otherwise, the user clicked yes and the tile was pinned, and the API will return true.
+> ```
+> This will return a boolean representing whether your tile is now pinned to Start. If your tile was already pinned, this will immediately return true without showing the dialog to the user. If the user clicks no on the dialog, or pinning your tile to Start isn&apos;t supported, this will return false. Otherwise, the user clicked yes and the tile was pinned, and the API will return true.`
 > ```C#
 > // Get your own app list entry
 > AppListEntry entry = (await Package.Current.GetAppListEntriesAsync())[0];
@@ -68,11 +70,17 @@ GUI 这边会尽快跟上
 
 ----
 
-~~说以下话的勇气源于作者的厚颜无耻~~
+技术有限, 不喜勿喷
+
+有什么意见或建议, 欢迎留言
+
+[Bilibili](https://message.bilibili.com/#/whisper/mid329963941)
+
+[邮箱](mailto:z1480583170@163.com)
 
 ~~如果喜欢, 动动你们的小手指, 戳下[关注](https://space.bilibili.com/329963941 "传送到 Bilibili")呗~~
 
-~~别忘记 star 哟~~
+~~说这句话的勇气源于作者的厚颜无耻~~
 
 [![](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561728135184&di=c013039d916dd8a2cfc7f3327bfd1ad4&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F7ec454481a2d8d45fcb0d51de1e6fc0438e5419f13ade-eWmT1w_fw658)](https://space.bilibili.com/329963941)
 
